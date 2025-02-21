@@ -23,5 +23,12 @@ namespace Rental_Application.API.Controllers
             return Ok(response);
 
         }
+
+        [HttpPost("LogoutUser")]
+        public async Task<IActionResult> LogoutUser([FromBody] LogoutRequest request)
+        {
+            await _userService.LogoutUser(request.LOGIN_ID);
+            return Ok();
+        }
     }
 }

@@ -11,6 +11,6 @@ namespace Rental_Application.IBusinessAccessLayer.IUserService
     public interface IUserService
     {
         Task<Response> ValidateUser(string username, string password);
-
+        public Task LogoutUser(string login_id);
     }
 }

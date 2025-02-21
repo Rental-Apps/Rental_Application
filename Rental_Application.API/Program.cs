@@ -1,6 +1,7 @@
 using NLog.Extensions.Logging;
 using Rental_Appication.BusinessAccessLayer.UserService;
 using Rental_Application.DataAccessLayer.DataRepository;
+using Rental_Application.DataAccessLayer.LoginLogRepository;
 using Rental_Application.DataAccessLayer.LogRepository;
 using Rental_Application.DataAccessLayer.UserRepository;
 using Rental_Application.IBusinessAccessLayer.IUserService;
@@ -10,9 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserDataRepository, UserDataRepository>();
+builder.Services.AddScoped<ILoginLogRepository, LoginLogRepository>();
 builder.Services.AddScoped<IDapper, DapperContext>();
 builder.Services.AddScoped<ITransactionLoggingRepository, TransactionLoggingRepository>();
 // Add services to the container.
