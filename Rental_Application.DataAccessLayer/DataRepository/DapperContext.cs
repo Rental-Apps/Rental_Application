@@ -17,6 +17,7 @@ namespace Rental_Application.DataAccessLayer.DataRepository
 
         public IDbConnection CreateConnection()
         {
+
             return new OracleConnection(_connectionString);
         }
 

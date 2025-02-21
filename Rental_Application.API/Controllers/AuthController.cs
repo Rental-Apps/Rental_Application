@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rental_Application.EntityLayer.UserModel;
 using Rental_Application.IBusinessAccessLayer.IUserService;
@@ -20,6 +21,16 @@ namespace Rental_Application.API.Controllers
         {
 
             var response = await _userService.ValidateUser(request.Username, request.Password);
+            return Ok(response);
+
+        }
+
+        [Authorize]
+        [HttpPost("GetUser")]
+        public async Task<IActionResult> GetUser([FromBody] UserRequest request)
+        {
+
+            var response = await _userService.GetUserDetailsById(request.Username);
             return Ok(response);
 
         }

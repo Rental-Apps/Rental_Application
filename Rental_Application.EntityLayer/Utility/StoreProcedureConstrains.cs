@@ -9,6 +9,7 @@ namespace Rental_Application.EntityLayer.Utility
     public static class StoreProcedureConstrains
     {
         public const string ValidateUser = "Rentalbasic.TEMP_VALIDATE_USER";
+        public const string GetUser = "Rentalbasic.TEMP_GET_USER";
         public const string Save_TransactionLog = "InsertTransactionLog";
     }
 }

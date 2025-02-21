@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Rental_Application.EntityLayer.Response;
 using Rental_Application.EntityLayer.UserModel;
 
 namespace Rental_Application.IBusinessAccessLayer.IUserService
 {
-    public interface IUserService
+    public interface IJwtService
     {
-        Task<Response> ValidateUser(string username, string password);
 
-        Task<Response> GetUserDetailsById(string username);
-
+        string GenerateToken(UserModel user);
     }
 }

@@ -43,6 +43,38 @@ namespace Rental_Application.DataAccessLayer.UserRepository
                             LOGIN_ID = reader["LOGIN_ID"].ToString(),
                             EMAIL_ID = reader["EMAIL_ID"].ToString()
                         };
+
+                    }
+                 
+                }
+            }
+
+            return null; // Return null if no user is found
+        }
+
+        public async Task<UserModel> GetUserById(string username)
+        {
+            using (var connection = _dapper.CreateConnection())
+            {
+                var parameters = new OracleDynamicParameters();
+
+                parameters.Add("USERNAME", username, OracleMappingType.Varchar2, ParameterDirection.Input);
+                parameters.Add("OUT_LOG_ID", dbType: OracleMappingType.RefCursor, direction: ParameterDirection.Output);
+
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                // Execute stored procedure and get the cursor result
+                using (var reader = await connection.ExecuteReaderAsync(StoreProcedureConstrains.GetUser, parameters, commandType: CommandType.StoredProcedure))
+                {
+                    if (reader.Read()) // Ensure there is a result
+                    {
+                        return new UserModel
+                        {
+                            LOGIN_ID = reader["LOGIN_ID"].ToString(),
+                            EMAIL_ID = reader["EMAIL_ID"].ToString()
+                        };
                     }
                 }
             }

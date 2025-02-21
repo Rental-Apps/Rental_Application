@@ -11,5 +11,7 @@ namespace Rental_Application.DataAccessLayer.UserRepository
     {
         Task<UserModel> GetUserByUsernameAndPasswordAsync(string username, string password);
         //Task<UserModel> AuthenticateUser(string username, string password);
+
+        Task<UserModel> GetUserById(string username);
     }
 }
