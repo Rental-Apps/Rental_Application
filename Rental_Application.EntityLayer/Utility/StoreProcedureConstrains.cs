@@ -10,5 +10,6 @@ namespace Rental_Application.EntityLayer.Utility
     {
         public const string ValidateUser = "Rentalbasic.TEMP_VALIDATE_USER";
         public const string Save_TransactionLog = "InsertTransactionLog";
+        public const string SP_RoleMaster = "Rentalbasic.PL_MASTER_USER_ROLE";
     }
 }
