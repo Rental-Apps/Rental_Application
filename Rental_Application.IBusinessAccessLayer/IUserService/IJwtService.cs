@@ -11,5 +11,7 @@ namespace Rental_Application.IBusinessAccessLayer.IUserService
     {
 
         string GenerateToken(UserModel user);
+
+        string GenerateRefreshToken();
     }
 }

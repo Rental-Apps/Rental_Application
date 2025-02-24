@@ -10,5 +10,15 @@ namespace Rental_Application.EntityLayer.UserModel
     {
         public string Username { get; set; }
         public string Password { get; set; }
+        public int Role { get; set; }
+       
+       // public string Remote_Address { get; set; }
+
+
+
+    }
+    public class LogoutRequest
+    {
+        public string LOGIN_ID { get; set; }
     }
 }

@@ -3,10 +3,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using NLog.Extensions.Logging;
 using Rental_Appication.BusinessAccessLayer.UserService;
+using Rental_Application.BusinessAccessLayer.RoleMasterService;
 using Rental_Application.BusinessAccessLayer.UserService;
 using Rental_Application.DataAccessLayer.DataRepository;
+using Rental_Application.DataAccessLayer.LoginLogRepository;
 using Rental_Application.DataAccessLayer.LogRepository;
+using Rental_Application.DataAccessLayer.RoleMasterRepository;
 using Rental_Application.DataAccessLayer.UserRepository;
+using Rental_Application.IBusinessAccessLayer.IRoleMasterService;
 using Rental_Application.IBusinessAccessLayer.IUserService;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,12 +18,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserDataRepository, UserDataRepository>();
 builder.Services.AddScoped<IDapper, DapperContext>();
 builder.Services.AddScoped<ITransactionLoggingRepository, TransactionLoggingRepository>();
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddScoped<IRoleMasterService, RoleMasterService>();
+builder.Services.AddScoped<IRoleMasterRepository, RoleMasterRepository>();
+builder.Services.AddScoped<ILoginLogRepository, LoginLogRepository>();
 // Add services to the container.
 // Configure NLog
 builder.Services.AddLogging(logging =>

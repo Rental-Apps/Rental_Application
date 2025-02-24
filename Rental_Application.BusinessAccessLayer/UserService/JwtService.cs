@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,7 @@ namespace Rental_Application.BusinessAccessLayer.UserService
             _audience = configuration["Jwt:Audience"];
         }
 
+       
 
         public string GenerateToken(UserModel user)
         {
@@ -34,9 +36,10 @@ namespace Rental_Application.BusinessAccessLayer.UserService
 
             var claims = new List<Claim>
             {
-                    new Claim(JwtRegisteredClaimNames.Sub, user.LOGIN_ID),
-                    new Claim(JwtRegisteredClaimNames.Email, user.EMAIL_ID)
-                    //new Claim("role", user.ROLE_NAME) // If role-based access is needed
+                    new Claim("Login_Id", user.Login_Id),
+                    new Claim("Email_Id", user.Email_Id),
+                    new Claim("First_Name", user.First_Name),
+                    new Claim("Role_Id", Convert.ToString(user.Role_Id))
             };
 
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -50,6 +53,15 @@ namespace Rental_Application.BusinessAccessLayer.UserService
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+        }
+
+
+        public string GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
         }
     }
 }

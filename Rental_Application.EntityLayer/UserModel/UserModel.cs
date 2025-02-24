@@ -10,11 +10,16 @@ namespace Rental_Application.EntityLayer.UserModel
     public class UserModel
     {
        
-        public string LOGIN_ID { get; set; }
-        public string EMAIL_ID { get; set; }
-        //public string Role_Name { get; set; }
+        public string Login_Id { get; set; }
+        public string Email_Id { get; set; }
+        public string First_Name { get; set; }
+        public int Role_Id { get; set; }
+        public string Password { get; set; }   
 
-        
+
+
+
+
 
 
     }
