@@ -71,13 +71,13 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
                         _emailService.SendEmail(user.Email_Id);
                         response = GenericResponse.CreateSingleResponse(result, "Login successful", "SUCCESS", (int)HttpStatusCode.OK);
                     //}
-                    var loginLog = new LogInLogModel
-                    {
-                        LOGIN_ID = request.Username,
-                        IP = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString(),
-                        LoginTime = DateTime.Now
-                    };
-                    await _loginLogRepository.AddLoginLogAsync(loginLog);
+                    //var loginLog = new LogInLogModel
+                    //{
+                    //    LOGIN_ID = request.Username,
+                    //    IP = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString(),
+                    //    LoginTime = DateTime.Now
+                    //};
+                    //await _loginLogRepository.AddLoginLogAsync(loginLog);
                 }
                 else
                 {

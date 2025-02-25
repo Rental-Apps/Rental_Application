@@ -93,7 +93,7 @@ namespace Rental_Application.Web.Pages.Login
                     SameSite = SameSiteMode.Strict, // Adjust according to your needs
                     Expires = DateTimeOffset.UtcNow.AddDays(30) // Set refresh token expiration time
                 });
-                return RedirectToPage("/Login/Welcome");
+                return RedirectToPage("/Login/VerifyLoginOTP");
             }
             else
             {
