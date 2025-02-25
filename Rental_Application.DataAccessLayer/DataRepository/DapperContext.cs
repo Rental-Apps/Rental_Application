@@ -53,6 +53,20 @@ namespace Rental_Application.DataAccessLayer.DataRepository
             }
         }
 
-      
+        public async Task<T> ExecuteAsync<T>(string query, object parameters, CommandType commandType = CommandType.StoredProcedure)
+        {
+            using (var connection = CreateConnection())
+            {
+                try
+                {
+                    return (await connection.ExecuteScalarAsync<T>(query, parameters, commandType: commandType));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
     }
 }
