@@ -10,6 +10,7 @@ using Rental_Application.DataAccessLayer.LoginLogRepository;
 using Rental_Application.DataAccessLayer.LogRepository;
 using Rental_Application.DataAccessLayer.RoleMasterRepository;
 using Rental_Application.DataAccessLayer.UserRepository;
+using Rental_Application.EntityLayer.EmailSettingsModel;
 using Rental_Application.IBusinessAccessLayer.IRoleMasterService;
 using Rental_Application.IBusinessAccessLayer.IUserService;
 
@@ -27,6 +28,10 @@ builder.Services.AddScoped<IJwtService, JwtService>();
 builder.Services.AddScoped<IRoleMasterService, RoleMasterService>();
 builder.Services.AddScoped<IRoleMasterRepository, RoleMasterRepository>();
 builder.Services.AddScoped<ILoginLogRepository, LoginLogRepository>();
+
+builder.Services.Configure<SmtpSettingsModel>(builder.Configuration.GetSection("SmtpSettings"));
+builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IOTP_Repository, OTP_Repository>();
 // Add services to the container.
 // Configure NLog
 builder.Services.AddLogging(logging =>

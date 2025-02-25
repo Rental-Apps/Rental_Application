@@ -28,15 +28,15 @@ namespace Rental_Application.API.Controllers
 
         }
 
-        [Authorize]
-        [HttpPost("GetUser")]
-        public async Task<IActionResult> GetUser([FromBody] UserRequest request)
-        {
+        //[Authorize]
+        //[HttpPost("GetUser")]
+        //public async Task<IActionResult> GetUser(string loginId)
+        //{
 
-            var response = await _userService.GetUserDetailsById(request.Username);
-            return Ok(response);
+        //    var response = await _userService.GetUserDetailsById(loginId);
+        //    return Ok(response);
 
-        }
+        //}
 
         [HttpPost("ValidatePassword")]
         public IActionResult ValidatePassword([FromBody] string password)
@@ -64,6 +64,13 @@ namespace Rental_Application.API.Controllers
         {
             await _userService.LogoutUser(request.LOGIN_ID);
             return Ok();
+        }
+
+        [HttpPost("VerifyOTP")]
+        public async Task<IActionResult> VerifyOTP(string loginId, string otp_code)
+        {
+            var response = await _userService.VerifyOTP(loginId, otp_code);
+            return Ok(response);
         }
 
 

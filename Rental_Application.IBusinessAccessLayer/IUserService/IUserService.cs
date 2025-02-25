@@ -7,9 +7,12 @@ namespace Rental_Application.IBusinessAccessLayer.IUserService
     {
         Task<Response> ValidateUser(AuthenticateRequest request);
 
-        Task<Response> GetUserDetailsById(string username);
+        Task<Response> GetUserDetailsById(string loginId);
 
         Task LogoutUser(string login_id);
+
+        Task<Response> VerifyOTP(string userId, string otp_Code);
+
 
     }
 }

@@ -2,6 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Rental_Application.BusinessAccessLayer.UserService;
 using Rental_Application.DataAccessLayer.LoginLogRepository;
 using Rental_Application.DataAccessLayer.LogRepository;
 using Rental_Application.DataAccessLayer.UserRepository;
@@ -23,8 +26,10 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
         private readonly IJwtService _jwtService;
         private readonly ILoginLogRepository _loginLogRepository;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IEmailService _emailService;
+        private readonly IOTP_Repository _oTP_Repository;
 
-        public UserService(IUserDataRepository userRepository, ILogger<UserService> logger, ITransactionLoggingRepository loggingRepository, IJwtService jwtService, IConfiguration configuration, ILoginLogRepository loginLogRepository, IHttpContextAccessor httpContextAccessor)
+        public UserService(IUserDataRepository userRepository, ILogger<UserService> logger, ITransactionLoggingRepository loggingRepository, IJwtService jwtService, IConfiguration configuration, ILoginLogRepository loginLogRepository, IHttpContextAccessor httpContextAccessor, IEmailService emailService, IOTP_Repository oTP_Repository)
         {
             _userRepository = userRepository;
             _logger = logger;
@@ -33,6 +38,8 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
             _aesHelper = new AESHelper(configuration["Encryption:Passphrase"] ?? throw new ArgumentNullException("Passphrase not found in appsettings"));
             _loginLogRepository = loginLogRepository;
             _httpContextAccessor = httpContextAccessor;
+            _emailService = emailService;
+            _oTP_Repository = oTP_Repository;   
         }
 
 
@@ -54,15 +61,15 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
                     var token = _jwtService.GenerateToken(user);
                     var refreshToken = _jwtService.GenerateRefreshToken();
 
-                    // Create a response object with user details and token
-                    var result = new
-                    {
-                        // User = user,  // User details
-                        Token = token,
-                        RefreshToken = refreshToken
-                    };
-
-                    response = GenericResponse.CreateSingleResponse(result, "Login successful", "SUCCESS", (int)HttpStatusCode.OK);
+                        // Create a response object with user details and token
+                        var result = new
+                        {
+                            // User = user,  // User details
+                            Token = token,
+                            RefreshToken = refreshToken
+                        };
+                        _emailService.SendEmail(user.Email_Id);
+                        response = GenericResponse.CreateSingleResponse(result, "Login successful", "SUCCESS", (int)HttpStatusCode.OK);
                     //}
                     var loginLog = new LogInLogModel
                     {
@@ -87,17 +94,17 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
         }
 
 
-        public async Task<Response> GetUserDetailsById(string username)
+        public async Task<Response> GetUserDetailsById(string loginId)
         {
             var response = new Response();
             try
             {
                 //_loggingRepository.CreateLogAsync(new TransactionLog { UserId = username, LogMessage = "In User Login", LogInTime = DateTime.Now });
 
-                var user = await _userRepository.GetUserById(username);
+                var user = await _userRepository.GetUserById(loginId);
                 if (user != null)
                 {
-                    response = GenericResponse.CreateSingleResponse(user, "Records found", "SUCCESS", (int)HttpStatusCode.OK);
+                    response = GenericResponse.CreateSingleResponse(user, user.Email_Id, "SUCCESS", (int)HttpStatusCode.OK);
                 }
                 else
                 {
@@ -123,5 +130,33 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
                 await _loginLogRepository.UpdateLoginLogAsync(loginLog);
             }
         }
+
+        public async Task<Response> VerifyOTP(string userId, string otp_Code)
+        {
+            var response = new Response();
+            try
+            {
+                response= await GetUserDetailsById(userId);
+
+                var user = await _oTP_Repository.verifyOTP(response.Message, otp_Code);
+                if (user != null)
+                {
+
+                    response = GenericResponse.CreateSingleResponse(user, "Login successful", "SUCCESS", (int)HttpStatusCode.OK);
+                }
+                else
+                {
+                    response = GenericResponse.CreateResponse(new List<Response>(), MessageConstrains.MSG_NOTFOUND, MessageConstrains.FAIL, (int)HttpStatusCode.NotFound);
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogInformation("Error in Login", ex.Message);
+                response = GenericResponse.CreateResponse(new List<Response>(), ex.Message, MessageConstrains.FAIL, (int)HttpStatusCode.InternalServerError);
+                return response;
+            }
+        }
+
     }
 }

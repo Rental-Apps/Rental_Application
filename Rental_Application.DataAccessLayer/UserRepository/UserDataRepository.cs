@@ -58,8 +58,8 @@ namespace Rental_Application.DataAccessLayer.UserRepository
             {
                 var parameters = new OracleDynamicParameters();
 
-                parameters.Add("USERNAME", username, OracleMappingType.Varchar2, ParameterDirection.Input);
-                parameters.Add("OUT_LOG_ID", dbType: OracleMappingType.RefCursor, direction: ParameterDirection.Output);
+                parameters.Add("LOGIN_ID", username, OracleMappingType.Varchar2, ParameterDirection.Input);
+                parameters.Add("OUT_EMAILS", dbType: OracleMappingType.RefCursor, direction: ParameterDirection.Output);
 
                 if (connection.State == ConnectionState.Closed)
                 {
@@ -73,7 +73,7 @@ namespace Rental_Application.DataAccessLayer.UserRepository
                         return new UserModel
                         {
                             //LOGIN_ID = reader["LOGIN_ID"].ToString(),
-                            //EMAIL_ID = reader["EMAIL_ID"].ToString()
+                            Email_Id = reader["EMAIL_ID"].ToString()
                         };
                     }
                 }

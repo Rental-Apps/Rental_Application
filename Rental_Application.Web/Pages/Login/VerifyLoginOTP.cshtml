@@ -1,0 +1,105 @@
+﻿@page
+@model Rental_Application.Web.Pages.Login.VerifyLoginOTPModel
+@{
+	Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTL Infrastructure</title>
+    <!-- jQuery UI -->
+   @*  <link rel="stylesheet" href="../src/css/jquery-ui.css">
+    <link rel="stylesheet" href="../src/fonts/stylesheet.css">
+    <link rel="stylesheet" href="../src/css/bootstrap.min.css"> *@
+    <!-- Custom styles for this template -->
+
+    @* <link href="../src/css/style.css" rel="stylesheet"> *@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-form-main-bg">
+            <div class="w-100">
+                <div class="logo-login mt-5">
+                    @* <img src="../src/images/GTLINFRA LOGO.png" style="height: 120px;" alt=""> *@
+                </div>
+                <form class="mt-5 mb-5 login-form-main" style="margin-top: 1rem !important;">
+                    <div>
+                        <h2>User Login</h2>
+                        <p>Login to the portal with your credentials</p>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputEmail3" class="col-form-label">OTP</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control form-control-lg" id="otp">
+                        </div>
+                    </div>
+                    <div class="d-grid mt-4">
+                        <button class="btn btn-primary btn-lg" id="btn_Verify" type="submit">Verify OTP</button>
+                    </div>
+                </form>
+            </div>
+            <div class="w-100 mt-5 mb-5">
+               @*  <img src="../src/images/loginPageImage.jpg" class="img-fluid" alt=""> *@
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    @* <script src="../src/js/jquery.min.js"></script>
+    <script src="../src/js/bootstrap.min.js"></script>
+
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="../src/css/jquery-ui.css">
+    <script src="../src/js/jquery-ui.min.js"></script> *@
+</body>
+
+</html>
+<script>
+    $(document).ready(function(){
+         $('#btn_Verify').on('click', function(event){
+             event.preventDefault(); // Prevent default form submission if necessary
+             alert("abc");
+             post();
+         });
+
+         function post() {
+             alert("abc");
+             // e.preventDefault(); // Commented out; already used in the click handler if needed
+
+             var recipientEmail = "narayanbhati1261996@gmail.com";
+             var subject = "test mail";
+             var body = "sample mail";
+             var otp_code = '235689'; // $('#otp').val();
+             var loginId = 'GIL000000897';
+
+             alert(loginId);
+
+             $.ajax({
+                 type: "POST",
+                 url: "https://localhost:7036/api/Auth/VerifyOTP",
+                 data: JSON.stringify({
+                     loginId: loginId,
+                     otp_code: otp_code
+                 }),
+                 contentType: "application/json",
+                 success: function (data) {
+                     alert("OTP verified successfully");
+                     // window.location.href = '/TicketLising';
+                 },
+                 error: function (xhr, status, error) {
+                     alert("Error: " + error);
+                 }
+             });
+         }
+    });
+</script>
