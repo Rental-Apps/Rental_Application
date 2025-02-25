@@ -56,8 +56,15 @@ namespace Rental_Application.API.Controllers
         [HttpGet("GetRole")]
         public async Task<IActionResult> GetRole()
         {
-            var response = await _roleMasterService.GetRoles();
-            return Ok(response);
+            var response = await _roleMasterService.GetRoles(); 
+            if (response != null)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return Ok(new { status = "FAIL", message = "Roles not found" });
+            }
         }
 
         [HttpPost("LogoutUser")]

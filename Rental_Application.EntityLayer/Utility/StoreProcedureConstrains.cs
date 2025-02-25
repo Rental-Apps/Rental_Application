@@ -15,5 +15,6 @@ namespace Rental_Application.EntityLayer.Utility
         public const string SP_LogInLogInsert = "Rentalbasic.PI_LOGIN_ACTIVITY";
         public const string sp_GetLatestLoginLog = "Rentalbasic.SP_GetLatestLoginLog";
         public const string sp_UpdateLoginLog = "Rentalbasic.PU_LOGIN_ACTIVITY";
+        public const string sp_GetSessionId = "RentalBasic.SP_GetSessionId";
     }
 }

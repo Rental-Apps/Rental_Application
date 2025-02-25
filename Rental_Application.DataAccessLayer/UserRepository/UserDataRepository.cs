@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 using Oracle.ManagedDataAccess.Types;
 using Oracle.ManagedDataAccess.Client;
 using Dapper.Oracle;
+using Rental_Application.EntityLayer.LogInLog;
 
 namespace Rental_Application.DataAccessLayer.UserRepository
 {
@@ -117,7 +118,51 @@ namespace Rental_Application.DataAccessLayer.UserRepository
         //}
         #endregion
 
+        /*public async Task SaveSessionId(string userId, string sessionId)
+        {
+            using (var connection = _dapper.CreateConnection())
+            {
+                var parameters = new OracleDynamicParameters();
+                parameters.Add("PRM_USER_ID", userId, OracleMappingType.Varchar2, ParameterDirection.Input);
+                parameters.Add("PRM_SESSION_ID", sessionId, OracleMappingType.Varchar2, ParameterDirection.Input);
 
+                await connection.ExecuteAsync("UPDATE RentalBasic.LOGIN_ACTIVITY SET SESSION_ID = :PRM_SESSION_ID WHERE USER_ID = :PRM_USER_ID", parameters);
+            }
+        }*/
+
+        public async Task<LogInLogModel> GetActiveSessionForUser(string userId)
+        {
+            using (var connection = _dapper.CreateConnection())
+            {
+                var parameters = new OracleDynamicParameters();
+                parameters.Add("p_User_ID", Convert.ToInt32(userId), OracleMappingType.Int32, ParameterDirection.Input);
+                parameters.Add("p_cursor", dbType: OracleMappingType.RefCursor, direction: ParameterDirection.Output);
+
+                try
+                {
+                    var result = await connection.QueryAsync<LogInLogModel>(StoreProcedureConstrains.sp_GetSessionId, parameters, commandType: CommandType.StoredProcedure);
+
+                    return result.FirstOrDefault();
+
+                }
+                catch (InvalidOperationException ex)
+                {
+                    throw new Exception("Multiple session records found for this user. Ensure that the query returns only one session.");
+                }
+
+            }
+        }
+
+        /*public async Task ClearSessionId(string userId)
+        {
+            using (var connection = _dapper.CreateConnection())
+            {
+                var parameters = new OracleDynamicParameters();
+                parameters.Add("PRM_USER_ID", userId, OracleMappingType.Int32, ParameterDirection.Input);
+
+                await connection.ExecuteAsync("UPDATE RentalBasic.LOGIN_ACTIVITY SET SESSION_ID = NULL WHERE USER_ID = :PRM_USER_ID", parameters);
+            }
+        }*/
 
     }
 }

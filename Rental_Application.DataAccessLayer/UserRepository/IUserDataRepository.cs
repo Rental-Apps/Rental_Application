@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Rental_Application.EntityLayer.LogInLog;
 using Rental_Application.EntityLayer.UserModel;
 
 namespace Rental_Application.DataAccessLayer.UserRepository
@@ -13,5 +14,8 @@ namespace Rental_Application.DataAccessLayer.UserRepository
         //Task<UserModel> AuthenticateUser(string username, string password);
 
         Task<UserModel> GetUserById(string username);
+        //Task SaveSessionId(string userId, string sessionId);
+        Task<LogInLogModel> GetActiveSessionForUser(string userId);
+        //Task ClearSessionId(string userId);
     }
 }

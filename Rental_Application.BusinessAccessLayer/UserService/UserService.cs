@@ -52,6 +52,26 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
 
                 if (user != null)
                 {
+                    var currentSessionId = "";
+                    var activeSession = await _userRepository.GetActiveSessionForUser(user.Login_Id);
+                    if(activeSession != null)
+                    {
+                        if (activeSession.LogoutTime == null && activeSession.SESSION_ID != null)
+                        {
+                            response = GenericResponse.CreateResponse(new List<Response>(), "You are already logged in from another session. Please close the current session and try again.", "FAIL", (int)HttpStatusCode.Forbidden);
+                            return response;
+                        }
+                        else
+                        {
+                            currentSessionId = _httpContextAccessor.HttpContext?.Session?.Id;
+                        }
+                    }
+                    else
+                    {
+                        currentSessionId = _httpContextAccessor.HttpContext?.Session?.Id;
+                    }
+                    
+
                     //if (user.Password == request.Password)
                     //{
                         var token = _jwtService.GenerateToken(user);
@@ -70,9 +90,11 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
                         {
                             LOGIN_ID = request.Username,
                             IP = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString(),
-                            LoginTime = DateTime.Now
+                            LoginTime = DateTime.Now,
+                            SESSION_ID = currentSessionId
                         };
-                    await _loginLogRepository.AddLoginLogAsync(loginLog);
+                        await _loginLogRepository.AddLoginLogAsync(loginLog);
+                        //await _userRepository.SaveSessionId(user.Login_Id, currentSessionId);
                 }
                 else
                 {
@@ -124,6 +146,7 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
                 loginLog.LogoutTime = DateTime.Now;
                 await _loginLogRepository.UpdateLoginLogAsync(loginLog);
             }
+            //await _userRepository.ClearSessionId(login_id);
         }
     }
 }
