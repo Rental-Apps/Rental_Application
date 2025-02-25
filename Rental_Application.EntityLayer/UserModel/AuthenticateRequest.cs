@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Rental_Application.EntityLayer.UserModel
+﻿namespace Rental_Application.EntityLayer.UserModel
 {
     public class AuthenticateRequest
     {
         public string Username { get; set; }
         public string Password { get; set; }
         public int Role { get; set; }
-       
-       // public string Remote_Address { get; set; }
+
+        // public string Remote_Address { get; set; }
 
 
 

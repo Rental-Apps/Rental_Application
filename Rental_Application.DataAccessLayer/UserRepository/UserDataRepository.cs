@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using Rental_Application.EntityLayer.UserModel;
+﻿using System.Data;
 using Dapper;
-using Rental_Application.DataAccessLayer.DataRepository;
-using Rental_Application.EntityLayer.Utility;
-using Newtonsoft.Json;
-using Oracle.ManagedDataAccess.Types;
-using Oracle.ManagedDataAccess.Client;
 using Dapper.Oracle;
+using Rental_Application.DataAccessLayer.DataRepository;
+using Rental_Application.EntityLayer.UserModel;
+using Rental_Application.EntityLayer.Utility;
 
 namespace Rental_Application.DataAccessLayer.UserRepository
 {
@@ -21,14 +16,14 @@ namespace Rental_Application.DataAccessLayer.UserRepository
             _dapper = dapper;
         }
 
-       
+
 
         public async Task<UserModel> GetUserByUsernameAndPasswordAsync(AuthenticateRequest request)
         {
             using (var connection = _dapper.CreateConnection())
             {
                 var parameters = new OracleDynamicParameters();
-         
+
                 parameters.Add("PRM_LOGIN_ID", request.Username, OracleMappingType.Varchar2, ParameterDirection.Input);
                 parameters.Add("PRM_PASSWORD", request.Password, OracleMappingType.Varchar2, ParameterDirection.Input);
                 parameters.Add("PRM_ROLE", request.Role, OracleMappingType.Int32, ParameterDirection.Input);
@@ -50,7 +45,7 @@ namespace Rental_Application.DataAccessLayer.UserRepository
                         };
 
                     }
-                 
+
                 }
             }
 

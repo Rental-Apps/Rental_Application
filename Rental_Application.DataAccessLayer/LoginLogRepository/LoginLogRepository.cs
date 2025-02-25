@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using Dapper;
 using Dapper.Oracle;
 using Rental_Application.DataAccessLayer.DataRepository;
@@ -29,7 +24,7 @@ namespace Rental_Application.DataAccessLayer.LoginLogRepository
                 parameters.Add("p_LOGIN_ID", loginLog.LOGIN_ID, OracleMappingType.Varchar2, ParameterDirection.Input);
                 parameters.Add("p_IP", loginLog.IP, OracleMappingType.Varchar2, ParameterDirection.Input);
                 parameters.Add("p_TIMEIN", loginLog.LoginTime, OracleMappingType.TimeStamp, ParameterDirection.Input);
-                
+
                 await connection.ExecuteReaderAsync(StoreProcedureConstrains.SP_LogInLogInsert, parameters, commandType: CommandType.StoredProcedure);
             }
         }

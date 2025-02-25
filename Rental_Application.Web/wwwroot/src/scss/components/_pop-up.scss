@@ -1,0 +1,101 @@
+.edit-page-popup-bg {
+    padding: 0;
+    margin: 0;
+
+    ul.filter-bg {
+        border-bottom: 1px solid $border-black-3;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        list-style: none;
+        padding: 20px;
+
+        li {
+            list-style: none;
+
+            span {
+                font-size: 14px;
+                font-weight: $fw-400;
+                line-height: 21px;
+                color: $black13;
+            }
+
+            p {
+                font-size: 16px;
+                font-weight: $fw-600;
+                line-height: 24px;
+                color: $black;
+            }
+        }
+    }
+
+    .pop-detail {
+        padding: 20px;
+
+        h2 {
+            font-family: Poppins;
+            font-size: 14px;
+            font-weight: $fw-600;
+            line-height: 21px;
+            color: &black;
+
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: $fw-500;
+            line-height: 15.9px;
+            color: $black10;
+            margin-top: 20px;
+        }
+
+        input.form-control {
+            font-size: 12px;
+            font-weight: $fw-500;
+            line-height: 15.9px;
+            background: $bg-gray4;
+            border: 1px solid $border-black-7;
+        }
+    }
+
+    .modal-dialog {
+        margin-right: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        --bs-modal-width: 690px;
+
+        .btn-link {
+            text-decoration: none;
+        }
+
+        .modal-content {
+            border-radius: 8px 0 0 8px;
+
+            .modal-header {
+                border: 0;
+                padding-bottom: 30px;
+                padding-left: 35px;
+                padding-right: 35px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+            .modal-footer {
+                display: flex;
+                justify-content: space-between;
+                border: 0;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-bottom: 35px;
+
+                .btn-link {
+                    color: $black13;
+                }
+
+                div {
+                    gap: 20px;
+                    display: flex;
+                }
+            }
+        }
+    }
+}

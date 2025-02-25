@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Rental_Application.EntityLayer.UserModel;
@@ -27,7 +23,7 @@ namespace Rental_Application.BusinessAccessLayer.UserService
             _audience = configuration["Jwt:Audience"];
         }
 
-       
+
 
         public string GenerateToken(UserModel user)
         {

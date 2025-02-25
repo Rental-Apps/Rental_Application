@@ -1,0 +1,9 @@
+// Convert px to rem Start
+@function strip-unit($num) {
+  @return calc($num / ($num * 0 + 1));
+}
+
+@function rem($pixels) {
+  @return calc(strip-unit($pixels) / $base-rem) * 1rem;
+}
+// Convert px to rem End

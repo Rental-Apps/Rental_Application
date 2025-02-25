@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 
 namespace Rental_Application.EntityLayer.Utility
 {
-    public  class AESHelper
+    public class AESHelper
     {
         private readonly byte[] _key;
         private const int KeySize = 256;
         private const int IvSize = 16; // AES block size
         private const int SaltSize = 32; // Recommended salt size
-        private static readonly  string _EncryptionKey;
+        private static readonly string _EncryptionKey;
 
         public AESHelper(string passphrase)
         {
@@ -25,7 +20,7 @@ namespace Rental_Application.EntityLayer.Utility
             }
         }
 
-        public  string Encrypt(string plainText)
+        public string Encrypt(string plainText)
         {
             byte[] iv = GenerateRandomBytes(IvSize);
             byte[] encrypted;
@@ -52,7 +47,7 @@ namespace Rental_Application.EntityLayer.Utility
             return Convert.ToBase64String(result);
         }
 
-        public  string Decrypt(string encryptedText)
+        public string Decrypt(string encryptedText)
         {
             byte[] encryptedBytes = Convert.FromBase64String(encryptedText);
             byte[] iv = new byte[IvSize];
@@ -77,7 +72,7 @@ namespace Rental_Application.EntityLayer.Utility
             }
         }
 
-        private  byte[] GenerateRandomBytes(int size)
+        private byte[] GenerateRandomBytes(int size)
         {
             byte[] bytes = new byte[size];
             using (var rng = RandomNumberGenerator.Create())

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Rental_Application.EntityLayer.LogInLog
+﻿namespace Rental_Application.EntityLayer.LogInLog
 {
     public class LogInLogModel
     {

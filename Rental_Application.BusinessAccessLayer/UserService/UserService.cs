@@ -1,10 +1,7 @@
-﻿using System.Configuration;
-using System.Net;
+﻿using System.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Rental_Application.DataAccessLayer.LoginLogRepository;
 using Rental_Application.DataAccessLayer.LogRepository;
 using Rental_Application.DataAccessLayer.UserRepository;
@@ -38,7 +35,7 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
             _httpContextAccessor = httpContextAccessor;
         }
 
-       
+
 
         public async Task<Response> ValidateUser(AuthenticateRequest request)
         {
@@ -54,24 +51,25 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
                 {
                     //if (user.Password == request.Password)
                     //{
-                        var token = _jwtService.GenerateToken(user);
-                        var refreshToken = _jwtService.GenerateRefreshToken();
+                    var token = _jwtService.GenerateToken(user);
+                    var refreshToken = _jwtService.GenerateRefreshToken();
 
-                        // Create a response object with user details and token
-                        var result = new
-                        {
-                            // User = user,  // User details
-                            Token = token,
-                            RefreshToken = refreshToken
-                        };
-                        response = GenericResponse.CreateSingleResponse(result, "Login successful", "SUCCESS", (int)HttpStatusCode.OK);
+                    // Create a response object with user details and token
+                    var result = new
+                    {
+                        // User = user,  // User details
+                        Token = token,
+                        RefreshToken = refreshToken
+                    };
+
+                    response = GenericResponse.CreateSingleResponse(result, "Login successful", "SUCCESS", (int)HttpStatusCode.OK);
                     //}
-                        var loginLog = new LogInLogModel
-                        {
-                            LOGIN_ID = request.Username,
-                            IP = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString(),
-                            LoginTime = DateTime.Now
-                        };
+                    var loginLog = new LogInLogModel
+                    {
+                        LOGIN_ID = request.Username,
+                        IP = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString(),
+                        LoginTime = DateTime.Now
+                    };
                     await _loginLogRepository.AddLoginLogAsync(loginLog);
                 }
                 else

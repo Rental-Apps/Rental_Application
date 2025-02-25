@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Rental_Application.EntityLayer.UserModel;
 using Rental_Application.EntityLayer.Utility;
@@ -65,6 +64,17 @@ namespace Rental_Application.API.Controllers
         {
             await _userService.LogoutUser(request.LOGIN_ID);
             return Ok();
+        }
+
+
+        [Authorize]
+        [HttpGet("WelcomeMessage")]
+        public async Task<IActionResult> WelcomeMessage()
+        {
+
+            var response = "Welcome to the rental application";
+            return Ok(response);
+
         }
     }
 }

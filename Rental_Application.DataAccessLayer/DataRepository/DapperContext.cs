@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Data.SqlClient;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using Oracle.ManagedDataAccess.Client;
@@ -53,6 +52,6 @@ namespace Rental_Application.DataAccessLayer.DataRepository
             }
         }
 
-      
+
     }
 }
