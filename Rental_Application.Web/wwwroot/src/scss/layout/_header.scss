@@ -1,0 +1,46 @@
+.navbar {
+    background-color: $white;
+}
+.navbar-nav {
+    @include media-breakpoint-down(md) {
+        margin-right: 70px;
+    }
+}
+
+.profile-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    border-radius: $border-radius-30;
+    color: $white;
+    background: #0473EA;
+    font-size: 12px;
+    font-weight: $fw-600;
+}
+
+ul {
+    &.nav-item-list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        li {
+
+            a {
+                text-decoration: none;
+                display: flex;
+
+                span {
+                    color: $black;
+                    font-size: 20px;
+                }
+            }
+
+        }
+    }
+}

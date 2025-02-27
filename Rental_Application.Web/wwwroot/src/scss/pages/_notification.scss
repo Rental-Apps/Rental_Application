@@ -1,0 +1,56 @@
+.notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .notification-list-box {
+        box-shadow: 0px 5px 15px 0px #00000033;
+        border-radius: $border-radius-4;
+        padding: 15px;
+        display: flex;
+        justify-content: space-between;
+        background-color: $white;
+        align-items: end;
+
+        .notification-list-box-right {
+            span {
+                color: $black4;
+                font-size: 14px;
+                font-weight: $fw-400;
+                line-height: 20px;
+            }
+        }
+
+        .notification-list-box-left {
+            h3 {
+                font-size: 14px;
+                font-weight: $fw-400;
+                line-height: 20px;
+                color: $black16;
+            }
+
+            p {
+                font-size: 14px;
+                font-weight: $fw-400;
+                line-height: 20px;
+                position: relative;
+                padding-left: 10px;
+                width: 65%;
+                color: $black16;
+                margin: 0;
+
+                &::after {
+                    content: "";
+                    height: 100%;
+                    position: absolute;
+                    width: 4px;
+                    background: #DDDEE1;
+                    top: 0;
+                    left: 0;
+                    z-index: $z-index1;
+                    border-radius: $border-radius-2;
+                }
+            }
+        }
+    }
+}

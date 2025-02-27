@@ -1,11 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Rental_Application.EntityLayer.UserModel
+﻿namespace Rental_Application.EntityLayer.UserModel
 {
     public class UserRequest
     {

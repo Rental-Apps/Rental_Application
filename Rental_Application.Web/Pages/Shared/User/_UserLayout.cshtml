@@ -1,0 +1,36 @@
+﻿@{
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0" href="#">
+                <div class="px-3 mt-3 mb-4">
+                    <img src="./../src/images/GTLINFRA LOGO.png" height="65px"
+                         style="margin-left: 40px; width: 100px;" class="image-show" alt="">
+                    <img src="./../src/images/GTLINFRA LOGO.png" style="width: 60px;" class="image-hide" alt="">
+                </div>
+            </a>
+            <div class="logo-left-bar" id="toggle-button">
+                <span class="icon-chevron-left-converted image-show"></span>
+                <span class="icon-menu-icon-converted image-hide"></span>
+            </div>
+            <div class="position-sticky mt-5">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="user-ticket-listing.html">
+                            <i class="fa-solid fa-ticket"></i>
+                            <span class="sidebar-text">My Tickets</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+	</div>
+     </div>
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-section">
+
+        @RenderBody()
+</main>
+
+

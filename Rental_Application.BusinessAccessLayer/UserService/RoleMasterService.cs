@@ -24,7 +24,7 @@ namespace Rental_Application.BusinessAccessLayer.RoleMasterService
             try
             {
                 var role = await _roleMasterRepository.GetRolesAsync();
-                if (role != null) 
+                if (role != null)
                 {
                     response = GenericResponse.CreateSingleResponse(role, "Roles Found!", MessageConstrains.SUCCESS, (int)HttpStatusCode.OK);
                 }
@@ -34,7 +34,7 @@ namespace Rental_Application.BusinessAccessLayer.RoleMasterService
                 }
                 return response;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 _logger.LogInformation("Something Wrong!", ex.Message);
                 response = GenericResponse.CreateResponse(new List<Response>(), ex.Message, MessageConstrains.FAIL, (int)HttpStatusCode.InternalServerError);

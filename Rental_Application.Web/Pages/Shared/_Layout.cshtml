@@ -1,50 +1,124 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Rental_Application.Web</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Rental_Application.Web.styles.css" asp-append-version="true" />
-</head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Rental_Application.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - Rental_Application.Web - <a asp-area="" asp-page="/Privacy">Privacy</a>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>GTL Infrastructure</title>
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="../src/css/jquery-ui.css">
+    <link rel="stylesheet" href="../src/fonts/stylesheet.css">
+    <link rel="stylesheet" href="../src/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+
+    <link href="../src/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .btn-proj:hover {
+            border: 1px solid #f12b20 !important;
+            color: #fff !important;
+            background-color: #f12b20 !important;
+        }
+
+        .btn-proj {
+            position: relative;
+            background-color: #ffffff;
+            margin-right: 7px;
+            min-width: 80px;
+            border: 1px solid #f2f2f2;
+            border-radius: 5px;
+            font-weight: normal !important;
+            color: #707070;
+            margin-bottom: 0;
+            padding: 3px 5px;
+            box-shadow: 0px 0px 0px 0.25px;
+            font-size: 14px;
+        }
+
+            .btn-proj.active {
+                background-color: #f12b20 !important;
+                color: #fff;
+            }
+    </style>
+</head>
+
+<body id="dashboard-header">
+    <header class="navbar navbar-light flex-md-nowrap p-3 d-flex justify-content-end">
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="navbar-nav">
+            <div class="nav-item text-nowrap">
+                <ul class="nav-item-list">
+                    <li>
+                        <span class="profile-name">
+                            PD
+                        </span>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </footer>
+    </header>
+   @*  <div class="container">
+        <main role="main" class="pb-3"> *@
+            @RenderBody()
+       @*  </main>
+    </div> *@
+
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="../src/js/jquery.min.js"></script>
+    <script src="../src/js/bootstrap.min.js"></script>
+
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="../src/css/jquery-ui.css">
+    <script src="../src/js/jquery-ui.min.js"></script>
+
+    <script>
+        // Function to add a class to the specified body tag when scrolling
+        function addScrollClass() {
+            var scrollPosition = window.scrollY;
+            var body = document.getElementById('dashboard-header'); // Replace 'yourBodyId' with the ID of your body tag
+
+            // Check if the user has scrolled past a certain point
+            if (scrollPosition > 200) {
+                body.classList.add('scrolled');
+            } else {
+                body.classList.remove('scrolled');
+            }
+        }
+
+        // Event listener for scroll events
+        window.addEventListener('scroll', addScrollClass);
+
+    </script>
+
+
+    <script type="text/javascript">
+        // Select the button element
+        const button = document.getElementById('toggle-button');
+
+        // Add a click event listener to the button
+        button.addEventListener('click', () => {
+            // Toggle the class 'my-class' on the body element
+            document.body.classList.toggle('my-class-menu');
+        });
+
+
+        $(function () {
+            $("#datepicker").datepicker();
+            $("#datepicker1").datepicker();
+        });
+
+    </script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>

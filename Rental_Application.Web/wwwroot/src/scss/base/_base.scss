@@ -1,0 +1,45 @@
+body {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  font-family: $ff-poppins;
+  background-position: 0 74px;
+  background: $bg-gray3;
+}
+
+a {
+  cursor: pointer;
+  color: $light-coral;
+  text-decoration: none;
+}
+
+button.btn.btn-link {
+  text-decoration: none;
+}
+
+.custom-form-select, .custom-form-control {
+  background-color: $bg-gray4;
+  border: 1px solid $border-black-7;
+}
+
+.record-list-filter {
+
+  form {
+    @include media-breakpoint-down(md) {
+      display: grid !important;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  button.btn.btn-primary {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 110px;
+    justify-content: center;
+  }
+
+  .form-select {
+    background-color: $bg-gray4;
+    border: 1px solid $border-black-7;
+  }
+}

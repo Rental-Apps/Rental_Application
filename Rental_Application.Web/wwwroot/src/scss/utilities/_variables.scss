@@ -1,0 +1,124 @@
+
+@import "node_modules/bootstrap/scss/functions";
+@import "node_modules/bootstrap/scss/variables";
+@import "node_modules/bootstrap/scss/mixins"; 
+/*
+@import "node_modules/bootstrap/scss/bootstrap";   */
+
+/* ------------------- */
+/* Font sizes          */
+/* ------------------- */
+$fs-12: 12px;
+$fs-13: 13px;
+$fs-14: 14px;
+$fs-15: 15px;
+$fs-16: 16px;
+$fs-17: 17px;
+$fs-18: 18px;
+$fs-19: 19px;
+$fs-20: 20px;
+$fs-21: 21px;
+$fs-22: 22px;
+$fs-23: 23px;
+$fs-24: 24px;
+$fs-25: 25px;
+$fs-26: 26px;
+$fs-27: 27px;
+$fs-28: 28px;
+$fs-29: 29px;
+$fs-30: 30px;
+$fs-32: 32px;
+$fs-34: 34px;
+$fs-40: 40px;
+
+/* ------------------- */
+/* Font family         */
+/* ------------------- */
+$ff-poppins: "Poppins", sans-serif;
+$ff-helvetica: 'helvetica_condensedregular';
+
+/* ------------------- */
+/* colors              */
+/* ------------------- */
+$black: hsl(0, 0%, 0%);
+$white: hsl(0, 0%, 100%);
+$light-coral: #FF8682;
+$green: #38D200;
+$blue: #0473EA;
+$black20: #313131;
+$black19: #222222;
+$black18: #212121;
+$black17: #454545;
+$black16: #1A1F36;
+$black15: #585858;
+$black14: #555555;
+$black13: #525355;
+$black12: #50576F;
+$black11: #7C7C7C;
+$black10: #21212199;
+$black9: #8E8E93;
+$black8: #21212180;
+$black7: #9E9B9B;
+$black6: #9E9E9E;
+$black5: #8C939C;
+$black4: #A5ACB8;
+$black3: #f9f9f9;
+$black2: #00000026;
+$black1: #00000040;
+/* ------------------- */
+/* background colors              */
+/* ------------------- */
+$bg-white: #fff;
+$bg-green: #38D200;
+$bg-gray1: #333333;
+$bg-gray2: #555555;
+$bg-gray3: #F9F9F9;
+$bg-gray4: #F5F7FB;
+$bg-gray5: #005f95;
+$bg-gray6: #4499c9;
+/* ------------------- */
+/* border colors              */
+/* ------------------- */
+
+
+$border-blue: #0473EA;
+$border-pink-light: #E9CF72;
+$border-green: #38D200;
+$border-purple :#9747FF;
+$border-black: #000000;
+$border-black-9: #4E4E4E;
+$border-black-8: #A9A9A9;
+$border-black-7: #C7C7CC;
+$border-black-6: #cccccc;
+$border-black-5: #ECECEC;
+$border-black-4: #D9D9D9;
+$border-black-3: #A9A9A980;
+
+/* ------------------- */
+/* Font weight         */
+/* ------------------- */
+$fw-400: 400;
+$fw-500: 500;
+$fw-600: 600;
+$fw-700: 700;
+$fw-bold: bold;
+
+/* ------------------- */
+/* Z-index             */
+/* ------------------- */
+$z-index0: -1;
+$z-index1: 1;
+
+
+/* ------------------- */
+/* border-radius            */
+/* ------------------- */
+
+$border-radius-0: 0;
+$border-radius-2: 2px;
+$border-radius-3: 3px;
+$border-radius-4: 4px !important;
+$border-radius-5: 5px;
+$border-radius-8: 8px;
+$border-radius-30: 30px;
+$border-radius-50: 50px;

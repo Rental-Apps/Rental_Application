@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 using Dapper;
 using Rental_Application.DataAccessLayer.DataRepository;
 using Rental_Application.EntityLayer.Utility;
@@ -33,7 +28,7 @@ namespace Rental_Application.DataAccessLayer.LogRepository
                 parameter.Add("@CreatedBy", transactionlog.CreatedBy);
                 parameter.Add("@ModifiedBy", transactionlog.ModifiedBy);
                 //return await _dapperDbConnection.InsertDeleteUpdate(connection, "sp_AddUser", parameters, CommandType.StoredProcedure);
-                return await _dapper.InsertDeleteUpdate(connection,StoreProcedureConstrains.Save_TransactionLog, parameter, CommandType.StoredProcedure);
+                return await _dapper.InsertDeleteUpdate(connection, StoreProcedureConstrains.Save_TransactionLog, parameter, CommandType.StoredProcedure);
             }
         }
     }

@@ -1,0 +1,112 @@
+.reassign-refer-back-table {
+    background: #fff;
+
+    a {
+        text-decoration: none;
+
+        span.icon-eye-converted {
+            font-size: 20px;
+            color: $black;
+        }
+    }
+
+    table {
+        margin-bottom: 0;
+
+        thead {
+            tr {
+                th {
+                    padding-top: 15px;
+                    padding-bottom: 15px;
+                    font-size: 12px;
+                    font-weight: $fw-600;
+                    line-height: 18px;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                td {
+                    font-size: 12px;
+                    font-weight: $fw-500;
+                    line-height: 18px;
+
+                    .btn {
+                        font-size: 12px;
+                        font-weight: $fw-500;
+                    }
+
+                    .table-name-mail {
+                        display: flex;
+                        flex-direction: column;
+
+                        span {
+                            color: $black6;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    .table>:not(caption)>*>* {
+        vertical-align: middle;
+    }
+}
+
+.table-responsive {
+    table {
+        tbody {
+            tr {
+                td {
+                    @include media-breakpoint-down(md) {
+                        min-width: 120px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pagination-bg {
+    display: flex;
+    justify-content: space-between;
+
+    .pagination {
+        gap: 10px;
+
+        li.page-item {
+            a.page-link {
+                border-radius: 4px !important;
+            }
+        }
+    }
+
+    .input-group {
+        width: auto;
+
+        .input-group-text {
+            border: 0;
+            background: none;
+            color: $black5;
+            font-size: 14px;
+            font-weight: $fw-400;
+            line-height: 19px;
+            padding-left: 0;
+        }
+
+        .form-select {
+            border-radius: 4px !important;
+        }
+    }
+}
+
+.refer-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #E3F0FE;
+}

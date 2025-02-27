@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper.Oracle;
+﻿using System.Data;
 using Dapper;
+using Dapper.Oracle;
 using Rental_Application.DataAccessLayer.DataRepository;
 using Rental_Application.EntityLayer.RoleMasterModel;
 using Rental_Application.EntityLayer.Utility;
@@ -36,9 +31,9 @@ namespace Rental_Application.DataAccessLayer.RoleMasterRepository
                     {
                         var roleMaster = new RoleMasterModel
                         {
-                            ROLE_ID = Convert.ToInt32(reader["ROLE_ID"]),
-                            ROLE = reader["ROLE"].ToString(),
-                            STATUS = Convert.ToBoolean(reader["STATUS"])
+                            Role_Id = Convert.ToInt32(reader["ROLE_ID"]),
+                            RoleName = reader["ROLE"].ToString()
+                            //STATUS = Convert.ToBoolean(reader["STATUS"])
                         };
                         roleMasterList.Add(roleMaster);
                     }

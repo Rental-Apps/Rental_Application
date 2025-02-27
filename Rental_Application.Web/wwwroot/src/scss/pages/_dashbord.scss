@@ -1,0 +1,105 @@
+.dashboard-title {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: $fw-600;
+    color: $black;
+    margin: 25px 0 5px 0;
+    text-transform: uppercase;
+}
+
+.main-title {
+    H2 {
+        font-size: 18px;
+        line-height: 27px;
+        font-weight: $fw-600;
+        color: $black;
+    }
+}
+
+ul {
+
+    &.dashboard-box {
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 15px;
+        padding: 0px;
+
+        @include media-breakpoint-down(md) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        li {
+            padding: 0;
+            margin: 0;
+            background-color: $white;
+            list-style: none;
+            box-shadow: 0px 4px 14px 0px $black2;
+            border-bottom: solid 10px $border-blue;
+            border-radius: $border-radius-8;
+            padding: 20px;
+            transition: background-color 0.3s ease;
+
+            &:nth-child(4n+1) {
+                border-color: $blue;
+            }
+
+            &:nth-child(4n+2) {
+                border-color: $border-black;
+            }
+
+            &:nth-child(4n+3) {
+                border-color: $border-pink-light;
+            }
+
+            &:nth-child(4n+4) {
+                border-color: $green;
+            }
+
+            &:hover {
+                border-bottom: transparent;
+
+                &:nth-child(4n+1) {
+                    background: linear-gradient(65.5deg, #38D200 -4.05%, #0473EA 90.73%);
+                }
+
+                &:nth-child(4n+2) {
+                    background: linear-gradient(65.5deg, #000000 -4.05%, #595959 90.73%);
+                }
+
+                &:nth-child(4n+3) {
+                    background: linear-gradient(65.5deg, #CED200 -4.05%, #EA9C04 90.73%);
+                }
+
+                &:nth-child(4n+4) {
+                    background: linear-gradient(65.5deg, #38D200 -4.05%, #0473EA 90.73%);
+                }
+
+                h2 {
+                    color: $white;
+                }
+
+                p {
+                    color: $white;
+                }
+            }
+
+            h2 {
+                font-size: 32px;
+                font-weight: $fw-600;
+                line-height: 48px;
+                color: $black13;
+            }
+
+            p {
+                padding: 0;
+                margin: 0;
+                font-size: 16px;
+                line-height: 21px;
+                color: $black13;
+            }
+        }
+    }
+
+}

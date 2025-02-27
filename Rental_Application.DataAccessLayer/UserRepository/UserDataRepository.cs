@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using Rental_Application.EntityLayer.UserModel;
+﻿using System.Data;
 using Dapper;
+using Dapper.Oracle;
 using Rental_Application.DataAccessLayer.DataRepository;
+using Rental_Application.EntityLayer.UserModel;
 using Rental_Application.EntityLayer.Utility;
 using Newtonsoft.Json;
 using Oracle.ManagedDataAccess.Types;
@@ -22,14 +21,14 @@ namespace Rental_Application.DataAccessLayer.UserRepository
             _dapper = dapper;
         }
 
-       
+
 
         public async Task<UserModel> GetUserByUsernameAndPasswordAsync(AuthenticateRequest request)
         {
             using (var connection = _dapper.CreateConnection())
             {
                 var parameters = new OracleDynamicParameters();
-         
+
                 parameters.Add("PRM_LOGIN_ID", request.Username, OracleMappingType.Varchar2, ParameterDirection.Input);
                 parameters.Add("PRM_PASSWORD", request.Password, OracleMappingType.Varchar2, ParameterDirection.Input);
                 parameters.Add("PRM_ROLE", request.Role, OracleMappingType.Int32, ParameterDirection.Input);
@@ -51,7 +50,7 @@ namespace Rental_Application.DataAccessLayer.UserRepository
                         };
 
                     }
-                 
+
                 }
             }
 
@@ -64,8 +63,8 @@ namespace Rental_Application.DataAccessLayer.UserRepository
             {
                 var parameters = new OracleDynamicParameters();
 
-                parameters.Add("USERNAME", username, OracleMappingType.Varchar2, ParameterDirection.Input);
-                parameters.Add("OUT_LOG_ID", dbType: OracleMappingType.RefCursor, direction: ParameterDirection.Output);
+                parameters.Add("LOGIN_ID", username, OracleMappingType.Varchar2, ParameterDirection.Input);
+                parameters.Add("OUT_EMAILS", dbType: OracleMappingType.RefCursor, direction: ParameterDirection.Output);
 
                 if (connection.State == ConnectionState.Closed)
                 {
@@ -79,7 +78,7 @@ namespace Rental_Application.DataAccessLayer.UserRepository
                         return new UserModel
                         {
                             //LOGIN_ID = reader["LOGIN_ID"].ToString(),
-                            //EMAIL_ID = reader["EMAIL_ID"].ToString()
+                            Email_Id = reader["EMAIL_ID"].ToString()
                         };
                     }
                 }

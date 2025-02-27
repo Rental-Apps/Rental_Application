@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using System.Data.SqlClient;
 using Dapper;
 using Microsoft.Extensions.Configuration;
 using Oracle.ManagedDataAccess.Client;
@@ -53,6 +52,20 @@ namespace Rental_Application.DataAccessLayer.DataRepository
             }
         }
 
-      
+        public async Task<T> ExecuteAsync<T>(string query, object parameters, CommandType commandType = CommandType.StoredProcedure)
+        {
+            using (var connection = CreateConnection())
+            {
+                try
+                {
+                    return (await connection.ExecuteScalarAsync<T>(query, parameters, commandType: commandType));
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+        }
+
     }
 }

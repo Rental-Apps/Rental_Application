@@ -1,0 +1,104 @@
+﻿@page
+@model Rental_Application.Web.Pages.Login.LoginModel
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTL Infrastructure</title>
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="../src/css/jquery-ui.css">
+    <link rel="stylesheet" href="../src/fonts/stylesheet.css">
+    <link rel="stylesheet" href="../src/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+
+    <link href="../src/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-form-main-bg ">
+            <div class="w-50">
+                <div class="logo-login mt-5">
+                    <img src="../src/images/GTLINFRA LOGO.png" style="height: 120px;" alt="">
+                </div>
+                <form method="post"  class="mt-5 mb-5  login-form-main" style="margin-top: 1rem !important;">
+                    <div class="mb-4">
+                        <h4> Welcome to the Rental Application</h4>
+                    </div>
+
+                    @if (Model.ErrorMessage != null)
+                    {
+                        <div class="alert alert-danger">
+                            @Model.ErrorMessage
+                        </div>
+                    }
+
+                    <div class="row mb-3">
+                        <label for="inputEmail3" class="col-form-label">LoginID</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control form-control-lg" asp-for="LoginId" required>
+                            <span asp-validation-for="LoginId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mt-4">
+                        <label for="inputPassword3" class="col-form-label">Password</label>
+                        <div class="col-sm-12">
+                            <input type="password" class="form-control form-control-lg" asp-for="Password" required>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mt-4">
+                        <label for="dropdown" class="col-form-label">Select User Role</label>
+                        <div class="col-sm-12">
+                            <select class="form-control form-control-lg" asp-for="SelectedRoleId" required>
+                                <option value="0">Select User Role</option>
+                                @foreach (var role in Model.UserRoles)
+                                {
+                                    <option value="@role.Role_Id">@role.RoleName</option>
+                                }
+                            </select>
+                            <span asp-validation-for="SelectedRoleId" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                       
+                        <a href="#" class="forgot-password">
+                            Forgot Password
+                        </a>
+                    </div>
+                   
+                    <div class="d-grid mt-4">
+                        <button class="btn btn-primary btn-lg" type="submit">Login</button>
+                    </div>
+                </form>
+            </div>
+           @*  <div class="w-100 mt-5 mb-5">
+                <img src="../src/images/loginPageImage.jpg" class="img-fluid" alt="">
+            </div> *@
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="../src/js/jquery.min.js"></script>
+    <script src="../src/js/bootstrap.min.js"></script>
+
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="../src/css/jquery-ui.css">
+    <script src="../src/js/jquery-ui.min.js"></script>
+</body>
+
+</html>

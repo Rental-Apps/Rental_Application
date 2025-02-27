@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Rental_Application.EntityLayer.RoleMasterModel;
+﻿using Rental_Application.EntityLayer.RoleMasterModel;
 
 namespace Rental_Application.DataAccessLayer.RoleMasterRepository
 {
