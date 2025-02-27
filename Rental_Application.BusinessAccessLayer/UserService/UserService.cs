@@ -136,17 +136,29 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
             var response = new Response();
             try
             {
-                response= await GetUserDetailsById(userId);
+                //response= await GetUserDetailsById(userId);
 
-                var user = await _oTP_Repository.verifyOTP(response.Message, otp_Code);
-                if (user != null)
+                var user = await _oTP_Repository.verifyOTP(userId, otp_Code);
+                var result = new
                 {
-
-                    response = GenericResponse.CreateSingleResponse(user, "Login successful", "SUCCESS", (int)HttpStatusCode.OK);
+                    // User = user,  // User details
+                    Result = user
+                    //RefreshToken = refreshToken
+                };
+                if (result != null)
+                {
+                    if (result.Result=="Valid OTP")
+                    {
+                        response = GenericResponse.CreateSingleResponse(result, result.Result, "SUCCESS", (int)HttpStatusCode.OK);
+                    }
+                    else 
+                    {
+                        response = GenericResponse.CreateResponse(new List<Response>(), result.Result, MessageConstrains.FAIL, (int)HttpStatusCode.NotFound);
+                    }
                 }
                 else
                 {
-                    response = GenericResponse.CreateResponse(new List<Response>(), MessageConstrains.MSG_NOTFOUND, MessageConstrains.FAIL, (int)HttpStatusCode.NotFound);
+                    response = GenericResponse.CreateResponse(new List<Response>(), MessageConstrains.MSG_WRONG_OTP, MessageConstrains.FAIL, (int)HttpStatusCode.NotFound);
                 }
                 return response;
             }

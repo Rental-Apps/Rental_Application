@@ -22,7 +22,7 @@ namespace Rental_Application.DataAccessLayer.UserRepository
         public async Task<string> saveAuthOTP(string otp, string emailId)
         {
             var parameters = new OracleDynamicParameters();
-            DateTime timeWithTwoMinAdded = DateTime.Now.AddMinutes(2);
+            DateTime timeWithTwoMinAdded = DateTime.Now.AddMinutes(10);
 
             var status = "Active";
             parameters.Add("p_Email_Id", emailId, OracleMappingType.Varchar2, ParameterDirection.Input);

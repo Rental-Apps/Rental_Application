@@ -27,13 +27,11 @@ namespace Rental_Application.BusinessAccessLayer.UserService
             _otpRepository = otp_Repository;
             _smtpSettings = smtpSettings.Value;
         }
-        //public void SendEmail(string recipientEmail) //, string subject, string body
         public async Task<Response> SendEmail(string recipientEmail)
         {
             var response = new Response();
             try
             {
-                //var otpData = new OTPModel();
                 var data = await SendEmailAsync(recipientEmail);
                 if (data != null)
                 {

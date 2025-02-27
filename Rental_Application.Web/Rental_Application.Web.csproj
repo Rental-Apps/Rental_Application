@@ -10,4 +10,12 @@
     <Folder Include="wwwroot\src\css\pages\_escalation-matrix.scss\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Rental_Application.EntityLayer\Rental_Application.EntityLayer.csproj" />
+  </ItemGroup>
+
 </Project>

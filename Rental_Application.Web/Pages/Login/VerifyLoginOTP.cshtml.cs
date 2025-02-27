@@ -1,8 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Reflection.Emit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Rental_Application.EntityLayer.UserModel;
 
 namespace Rental_Application.Web.Pages.Login
 {
@@ -32,10 +34,10 @@ namespace Rental_Application.Web.Pages.Login
                 // Handle missing token case
                 return RedirectToPage("/Login/Login");
             }
-
+            var otpData1 = decodeToekn(token);
             var otpData = new OTPRequest
             {
-                loginId = "GIL000000897",
+                loginId = otpData1.loginId,
                 otp_code = Otp
 
             };
@@ -73,11 +75,47 @@ namespace Rental_Application.Web.Pages.Login
 
         public class ApiLoginResponse
         {
-            //public List<LoginData> Data { get; set; }
+            public List<LoginDataVerifyOTP> Data { get; set; }
             public string Status { get; set; }
             public int StatusCode { get; set; }
             public string Message { get; set; }
         }
 
+        public class LoginDataVerifyOTP
+        {
+            public string Result { get; set; }
+        }
+
+        public OTPRequest decodeToekn(string userToken)
+        {
+            var tokenData = new OTPRequest();
+            string token = userToken; // Replace with your JWT token
+
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+
+            if (jsonToken != null)
+            {
+                var jwtToken = jsonToken;
+
+                // Get Claims
+                var claims = jwtToken.Claims;
+
+                // Extract login ID and password claims (if present)
+                var emailId = claims.FirstOrDefault(c => c.Type == "Email_Id")?.Value;
+                var password = claims.FirstOrDefault(c => c.Type == "password")?.Value;
+
+                // Print the extracted claims
+                Console.WriteLine($"Login ID: {emailId}");
+                Console.WriteLine($"Password: {password}");
+                tokenData.loginId = emailId;
+                return tokenData;
+            }
+            else
+            {
+                Console.WriteLine("Invalid JWT token.");
+            }
+            return tokenData;   
+        }
     }
 }

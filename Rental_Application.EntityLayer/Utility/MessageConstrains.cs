@@ -10,5 +10,8 @@
         public const string MSG_NOTFOUND = "Records not found";
         public const string MSG_ERROR = "Internal Server Error";
         public const string MSG_UPDATE = "Upsert records Successfully";
+
+        public const string MSG_INVALID_OTP = "Invalid OTP";
+        public const string MSG_WRONG_OTP = "Worng OTP";
     }
 }

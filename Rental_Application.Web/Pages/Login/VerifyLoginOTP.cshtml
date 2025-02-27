@@ -21,15 +21,27 @@
 
 
 </head>
+<style>
+    body {
+        background-color: #52377c47; /* Light background color */
+    }
+
+    .login-form-main-bg {
+        background-color: #fff; /* White background for the form */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow around the form */
+        margin-top: 20px;
+        width: 400px;
+    }
+</style>
 
 <body>
-    <div class="container">
-        <div class="login-form-main-bg ">
-            <div class="w-50">
-                <form method="post" class="mt-5 mb-5 login-form-main" style="margin-top: 1rem !important;">
-                    <div>
-                        <h2>User Login</h2>
-                        <p>Login to the portal with your credentials</p>
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="login-form-main-bg">
+            <div class="w-100">
+                <form method="post" class="login-form-main" style="margin-top: 1rem !important; margin-left: 50px; margin-right: 50px; margin-bottom:20px;">
+                    <div class="mb-4 text-center">
+                        <h4>Verify OTP</h4>
                     </div>
                     <div class="row mb-3">
                         <label for="inputEmail3" class="col-form-label">OTP</label>
@@ -42,9 +54,6 @@
                     </div>
                 </form>
             </div>
-            @*  <div class="w-100 mt-5 mb-5">
-                <img src="../src/images/loginPageImage.jpg" class="img-fluid" alt="">
-            </div> *@
         </div>
     </div>
 

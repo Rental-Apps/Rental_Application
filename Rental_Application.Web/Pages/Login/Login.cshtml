@@ -23,21 +23,37 @@
 
 </head>
 
+<style>
+    body {
+        background-color: #52377c47; /* Light background color */
+    }
+
+    .login-form-main-bg {
+        background-color: #fff; /* White background for the form */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow around the form */
+        margin-top: 20px;
+        
+        width: 400px;
+    }
+</style>
+
 <body>
-    <div class="container">
-        <div class="login-form-main-bg ">
-            <div class="w-50">
-                <div class="logo-login mt-5">
+    <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="login-form-main-bg w-50">
+            <div class="w-100">
+                <div class="logo-login mt-5 text-center">
                     <img src="../src/images/GTLINFRA LOGO.png" style="height: 120px;" alt="">
                 </div>
-                <form method="post"  class="mt-5 mb-5  login-form-main" style="margin-top: 1rem !important;">
-                    <div class="mb-4">
-                        <h4> Welcome to the Rental Application</h4>
+                <form method="post" class="login-form-main" style="margin-top: 1rem !important;     margin-left: 50px;
+                     margin-right: 50px; margin-bottom:20px;">
+                    <div class="mb-4 text-center">
+                        <h4>Welcome to the Rental Application</h4>
                     </div>
 
                     @if (Model.ErrorMessage != null)
                     {
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger text-center">
                             @Model.ErrorMessage
                         </div>
                     }
@@ -71,20 +87,16 @@
                     </div>
 
                     <div class="d-flex justify-content-between">
-                       
                         <a href="#" class="forgot-password">
                             Forgot Password
                         </a>
                     </div>
-                   
+
                     <div class="d-grid mt-4">
                         <button class="btn btn-primary btn-lg" type="submit">Login</button>
                     </div>
                 </form>
             </div>
-           @*  <div class="w-100 mt-5 mb-5">
-                <img src="../src/images/loginPageImage.jpg" class="img-fluid" alt="">
-            </div> *@
         </div>
     </div>
 

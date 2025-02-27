@@ -4,5 +4,61 @@
     Layout = null;
 }
 
+<!DOCTYPE html>
+<html lang="en">
 
-<p>@Model.Message</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTL Infrastructure</title>
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="../src/css/jquery-ui.css">
+    <link rel="stylesheet" href="../src/fonts/stylesheet.css">
+    <link rel="stylesheet" href="../src/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+
+    <link href="../src/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<style>
+    body {
+        background-color: #52377c47; /* Light background color */
+    }
+
+    .login-form-main-bg {
+        background-color: #fff; /* White background for the form */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow around the form */
+        margin-top: 20px;
+        width: 400px;
+    }
+</style>
+
+<body>
+
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="login-form-main-bg">
+        <div class="w-100">
+            <form method="post" class="login-form-main" style="margin-top: 1rem !important; margin-left: 50px; margin-right: 50px; margin-bottom:20px;">
+                <div class="mb-4 text-center">
+                    <h2>@Model.Message</h2>
+                  
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+    <script src="../src/js/jquery.min.js"></script>
+    <script src="../src/js/bootstrap.min.js"></script>
+
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="../src/css/jquery-ui.css">
+    <script src="../src/js/jquery-ui.min.js"></script>
+</body>
+
+</html>
