@@ -58,7 +58,7 @@
 
                         var roles = data.data[0];
                         roles.forEach(function (role) {
-                            roleSelect.append('<option value="' + role.rolE_ID + '">' + role.role + '</option>');
+                            roleSelect.append('<option value="' + role.role_Id + '">' + role.roleName + '</option>');
                         });
                     } else {
                         alert('Failed to load roles');
