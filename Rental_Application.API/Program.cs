@@ -33,6 +33,15 @@ builder.Services.Configure<SmtpSettingsModel>(builder.Configuration.GetSection("
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IOTP_Repository, OTP_Repository>();
 // Add services to the container.
+
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 // Configure NLog
 builder.Services.AddLogging(logging =>
 {
@@ -67,6 +76,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("https://localhost:7291")
+               .AllowAnyHeader()
+               .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -80,6 +98,10 @@ if (app.Environment.IsDevelopment())
 
 
 app.UseHttpsRedirection();
+
+app.UseSession();
+
+app.UseCors();
 
 app.UseAuthorization();
 

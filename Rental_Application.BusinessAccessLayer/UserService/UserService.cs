@@ -56,6 +56,26 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
 
                 if (user != null)
                 {
+                    var currentSessionId = "";
+                    var activeSession = await _userRepository.GetActiveSessionForUser(user.Login_Id);
+                    if(activeSession != null)
+                    {
+                        if (activeSession.LogoutTime == null && activeSession.SESSION_ID != null)
+                        {
+                            response = GenericResponse.CreateResponse(new List<Response>(), "You are already logged in from another session. Please close the current session and try again.", "FAIL", (int)HttpStatusCode.Forbidden);
+                            return response;
+                        }
+                        else
+                        {
+                            currentSessionId = _httpContextAccessor.HttpContext?.Session?.Id;
+                        }
+                    }
+                    else
+                    {
+                        currentSessionId = _httpContextAccessor.HttpContext?.Session?.Id;
+                    }
+                    
+
                     //if (user.Password == request.Password)
                     //{
                     var token = _jwtService.GenerateToken(user);
@@ -71,13 +91,15 @@ namespace Rental_Appication.BusinessAccessLayer.UserService
                         _emailService.SendEmail(user.Email_Id);
                         response = GenericResponse.CreateSingleResponse(result, "Login successful", "SUCCESS", (int)HttpStatusCode.OK);
                     //}
-                    //var loginLog = new LogInLogModel
-                    //{
-                    //    LOGIN_ID = request.Username,
-                    //    IP = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString(),
-                    //    LoginTime = DateTime.Now
-                    //};
-                    //await _loginLogRepository.AddLoginLogAsync(loginLog);
+                        var loginLog = new LogInLogModel
+                        {
+                            LOGIN_ID = request.Username,
+                            IP = _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString(),
+                            LoginTime = DateTime.Now,
+                            SESSION_ID = currentSessionId
+                        };
+                        await _loginLogRepository.AddLoginLogAsync(loginLog);
+                        //await _userRepository.SaveSessionId(user.Login_Id, currentSessionId);
                 }
                 else
                 {

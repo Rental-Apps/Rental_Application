@@ -12,5 +12,6 @@
 
         public const string SaveOTP = "Rentalbasic.SaveOTP";
         public const string VerifyOTP = "Rentalbasic.VERIFYOTP";
+        public const string sp_GetSessionId = "RentalBasic.SP_GetSessionId";
     }
 }

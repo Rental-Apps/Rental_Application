@@ -24,6 +24,7 @@ namespace Rental_Application.DataAccessLayer.LoginLogRepository
                 parameters.Add("p_LOGIN_ID", loginLog.LOGIN_ID, OracleMappingType.Varchar2, ParameterDirection.Input);
                 parameters.Add("p_IP", loginLog.IP, OracleMappingType.Varchar2, ParameterDirection.Input);
                 parameters.Add("p_TIMEIN", loginLog.LoginTime, OracleMappingType.TimeStamp, ParameterDirection.Input);
+                parameters.Add("p_SESSION_ID", loginLog.SESSION_ID, OracleMappingType.Varchar2, ParameterDirection.Input);
 
                 await connection.ExecuteReaderAsync(StoreProcedureConstrains.SP_LogInLogInsert, parameters, commandType: CommandType.StoredProcedure);
             }
