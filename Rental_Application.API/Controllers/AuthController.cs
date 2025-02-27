@@ -65,11 +65,11 @@ namespace Rental_Application.API.Controllers
             await _userService.LogoutUser(request.LOGIN_ID);
             return Ok();
         }
-
+        [Authorize]
         [HttpPost("VerifyOTP")]
-        public async Task<IActionResult> VerifyOTP(string loginId, string otp_code)
+        public async Task<IActionResult> VerifyOTP(OTPRequestModel oTPRequestModel)
         {
-            var response = await _userService.VerifyOTP(loginId, otp_code);
+            var response = await _userService.VerifyOTP(oTPRequestModel.loginId, oTPRequestModel.otp_code);
             return Ok(response);
         }
 

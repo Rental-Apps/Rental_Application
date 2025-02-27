@@ -26,7 +26,7 @@
     <div class="container">
         <div class="login-form-main-bg ">
             <div class="w-50">
-                <form class="mt-5 mb-5 login-form-main" style="margin-top: 1rem !important;">
+                <form method="post" class="mt-5 mb-5 login-form-main" style="margin-top: 1rem !important;">
                     <div>
                         <h2>User Login</h2>
                         <p>Login to the portal with your credentials</p>
@@ -34,7 +34,7 @@
                     <div class="row mb-3">
                         <label for="inputEmail3" class="col-form-label">OTP</label>
                         <div class="col-sm-12">
-                            <input type="text" class="form-control form-control-lg" id="otp">
+                            <input type="text" class="form-control form-control-lg" id="otp" asp-for="Otp" required>
                         </div>
                     </div>
                     <div class="d-grid mt-4">
@@ -63,7 +63,7 @@
 
 </html>
 
-<script>
+@* <script>
     $(document).ready(function(){
          $('#btn_Verify').on('click', function(event){
              event.preventDefault(); // Prevent default form submission if necessary
@@ -101,4 +101,4 @@
              });
          }
     });
-</script>
+</script> *@

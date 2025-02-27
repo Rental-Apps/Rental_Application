@@ -15,4 +15,12 @@
     {
         public string LOGIN_ID { get; set; }
     }
+
+
+    public class OTPRequestModel
+    {
+        public string loginId { get; set; }
+
+        public string otp_code { get; set; }
+    }
 }
